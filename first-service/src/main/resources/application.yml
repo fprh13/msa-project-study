@@ -1,2 +1,17 @@
 server:
-  port: 8081
+#  유레카 목록이 하나 밖에 안나오는 이슈 발생
+  port: 0
+
+spring:
+  application:
+    name: my-first-service
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#      유레카 목록이 하나 밖에 안나오는 이슈 해결 방법
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
